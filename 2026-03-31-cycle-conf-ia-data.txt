@@ -1,0 +1,91 @@
+
+## Consommation énergétique et impact des algorithmes d'IAG
+
+Abstract:
+
+Les algorithmes d'intelligence artificielle (IA) et en particulier d'IA générative (IAg ou GenAI) nécessitent des quantités massives de données, de puissance de calcul et d'énergie pour être entraînés et exécutés. Nous mettrons en perspective les coûts énergétiques liés à l'entraînement des différents modèles existants, qu'il s'agisse de génération de texte, d'images ou de vidéos, ainsi que les coûts de génération. Nous discuterons également des compromis entre la qualité des modèles et leur consommation énergétique, ainsi que des pistes pour réduire cette dernière. Enfin, nous aborderons les enjeux liés à l'utilisation responsable de ces algorithmes et les défis à relever pour minimiser leur impact environnemental.
+
+
+## Quelques resources consolidées (calculs utilisés, etc) (me demander en cas de manque / question / erreur)
+
+- Rapport autorité de la concurrence fin 2025
+    - https://www.autoritedelaconcurrence.fr/fr/communiques-de-presse/lautorite-rend-publique-son-etude-sur-les-enjeux-concurrentiels-lies-limpact
+    - "Autorité observe le développement de plus en plus d’outils"
+    - le rapport https://www.autoritedelaconcurrence.fr/sites/default/files/2026-01/Etude_IA_Energie_ADLC-LR.pdf
+        - eau
+            - l’eau potable, prélevé par les centres de données aurait atteint 0,6 million de m³ par an, + 17 % en 2022 et + 19 % en 2023
+            - eau pour production d'electricité 5,2 millions de m³ par an
+            - 90% de l'eau dû au calcul (entrainement et inférence)
+        - (45-47) augmentation de conso même si elec potentiellement décarbonnée = augmentation
+        - (50) répartition impact numérique (ADEME)
+            - la part du numérique à 4,4 % de l’empreinte carbone nationale en 2022,
+            - 50 % de cette empreinte provenant des terminaux,
+            - 46 % des centres de données [cette catégorie comprenant les équipements liés à l’hébergement et au traitement des données (serveurs, disques, etc.)],
+            - 4 % des réseaux
+    - des améliorations dues à l'IA, entre 5% et espéré 20% sur voitures etc
+- Sur la complexité d'estimer l'impact d'une « requête »
+    - une requête fait plein de discussions cachées (raisonnement) https://arxiv.org/pdf/2603.23971
+    - coût par requête ![per req](/cost-per-request.png) + cf excell et surtout arxiv
+- Chatgpt (aujourd'hui)
+    - pour moins de 270k token de contexte
+    - gpt5.4           IN 2.50 $US/1MTok, cache 0.25 $US/1MTok, 15,00 $US/1Tok jetons
+    - gpt5.4mini       IN 0.75 $US/1MTok, cache 0.07 $US/1MTok,  4.50 $US/1Tok jetons
+    - gpt5.4nano       IN 0.20 $US/1MTok, cache 0.02 $US/1MTok,  1,25 $US/1Tok jetons
+    - GPT-image-1.5    => 8 / 2 / 32$ (par image ?)
+    - GPT-realtime-1.5 => 32 / 0.4 / 64 (par quoi ?)
+    - recherche web    $10.00 /1000 appels
+- Chatgpt au fil du temps
+    - toutes les versions https://www.gradually.ai/en/chatgpt-versions/
+    - et coût (février 2023, donc probablement vieux modèle chatgpt3.5) https://newsletter.semianalysis.com/i/175660924/chatgpt-costs
+    - chatgpt lui même me dit
+      > Énergie par requête (ordre de grandeur)
+      > GPT-3.5     = 1x
+      > GPT-4 old   = 20–50x
+      > GPT-5       = 5–15x
+- llama4 scout
+    - (dispo dans duck.ai)
+    - fait la non-explication pour 123+321
+    - https://apxml.com/posts/llama-4-system-requirements
+    - > Llama 4 Scout
+      >
+      > Scout is designed to be efficient while supporting an unprecedented 10 million token context window. Under certain conditions, it fits on a single NVIDIA H100 GPU with 17 billion active parameters and 109 billion total. This makes it a practical starting point for working with long-context or document-level tasks.
+      > 
+      > “Under certain conditions” refers to a narrow setup where Scout can fit on a single H100:
+      > 
+      >     Quantized to INT4 or similar: FP16 versions exceed the VRAM of an 80GB H100. Compression is mandatory.
+      >     Short or moderate contexts: 4K to 16K contexts are feasible. Beyond that, the KV cache dominates memory usage.
+      >     Batch size of 1: Larger batches require more VRAM or GPUs.
+      >     Efficient inference frameworks: Tools like vLLM, AutoAWQ, or ggml help manage memory fragmentation and loading overhead.
+      > 
+      > So, fitting Scout on one H100 is possible, but only in highly constrained conditions.
+    - https://www.nvidia.com/fr-fr/data-center/h100/
+        - 25k$
+        - Novita AI, fournisseur cloud spécialisé, propose des instances H100 à 2.89$/heure
+        - https://docs.jarvislabs.ai/blog/h100vsa100
+    - qq resources deepseek A100/H100 fait tourner un 70B https://linuxblog.io/deepseek-local-self-host/
+- au sujet de la voiture electrique et comparaison avec production nucléaire
+    - ... soit de mes calculs **une moyenne de 5500kWh** par personne (70millions) (9 kWh/L) et par an
+    - "En 2019, selon l’UFIP Energies Mobilités, ces 11 000 stations ont compté cinq millions de pleins quotidiens, servant 118 millions de litres de carburant par jour."
+    - ... soit de mes calculs **une moyenne de 5500kWh** par personne (70millions) (9 kWh/L) et par an
+    - ... (le 9kWh/L pris avec semble cohérent avec https://prix-carburant.eu/article/equivalence-energetique-des-carburants )
+    - « En 2019, la production française d'**électricité d'origine nucléaire** représentait un total de 379,5 TWh » soit ramené par personne, de manière assez intéressante on arrive à **une moyenne de 5400kWh** par personne par an 
+- quelques chiffres sur les voitures plus récents
+    - https://www.energiesetmobilites.fr/presse/informations
+    - "La vente totale d’électricité aux points de recharge ouverts au public est estimée à 646 GWh et a permis d’éviter l’émission de 477 500 tonnes de CO2 en 2024"
+    - chiffre de 112 millions de litres, donc à peut près pareil
+- traffic routier annuelle
+    - traffic sur les routes (transport de marchandise international inclus ?)
+        - https://www.insee.fr/fr/statistiques/serie/001587569#Graphique
+        - septembre 2025 : 18,708 milliards de véhicules-kilomètres, entre 15 et 22 milliards
+        - en grande partie sur les autoroutes https://www.insee.fr/fr/statistiques/serie/001587570#Graphique
+        - https://www.insee.fr/fr/statistiques/5225246
+        - soit 3000km/an/pers (70M fr, 12 mois)
+- avion
+    - effet covid sur les transport aérien en france
+    - https://www.insee.fr/fr/statistiques/serie/010001977#Graphique
+- conso et mix electrique
+    - https://www.insee.fr/fr/statistiques/2015872
+- conso eau (idf)
+    - https://www.insee.fr/fr/statistiques/7701664
+    - Une consommation domestique moyenne de près de 100 litres d’eau par personne et par jour
+- Streaming video https://impactco2.fr/outils/usagenumerique/streamingvideo
