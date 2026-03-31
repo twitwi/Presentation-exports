@@ -89,3 +89,77 @@ Les algorithmes d'intelligence artificielle (IA) et en particulier d'IA généra
     - https://www.insee.fr/fr/statistiques/7701664
     - Une consommation domestique moyenne de près de 100 litres d’eau par personne et par jour
 - Streaming video https://impactco2.fr/outils/usagenumerique/streamingvideo
+
+
+## Données pour les bulles
+
+```javascript
+
+const data = {
+  // kg EqCO2 / pers / an
+  "Alim. bœuf": 5100, // kg EqCO2 / pers / an
+  "Alim. poulet": 1200, // kg EqCO2 / pers / an
+  "Alim. végétarienne": 350, // kg EqCO2 / pers / an
+  "Logement (an)": 2500, // kg EqCO2 / pers / an
+  "1 Vol Paris-New York (12k km)": 2000,
+  "12k km voiture": 2700, // thermique
+  "12k km train": 30,
+  "3h de four par semaine": 23,
+  "Ampoule 10W": 5,
+  "Stockage cloud 50GB": 9,
+  "1 GPU": 50,
+  "Objectif": 2000, // kg EqCO2 / pers / an
+  "Nucléaire": (379.5*1e9 / 70/1e6 *  0.006).toFixed(1), // kg EqCO2 / pers / an
+  "Carburant": (118/70 * 365 * 2.5).toFixed(1), // 118 millions de litres de carburant par jour, 2.5kco2/l
+  "1 Smartphone": 85, // https://impactco2.fr/outils/numerique/
+  "Utilisation smartphone": 0.6,
+  "1 Ordinateur portable": 180,
+  "Utilisation ordinateur": 7.5,
+  "Streaming lowquality, wifi (2h/jour)": 36, // 50*2*365 https://impactco2.fr/outils/usagenumerique/streamingvideo
+  "Streaming 4k, wifi (2h/jour)": 342,
+  "Streaming 4k, 4G (2h/jour)": 892,
+  // backport from below
+  "Entraînement GPT-4 (pour 1M personne)": 12,
+  "Entraînement Llama4 (pour 1M personne)": 2,
+  "10 Requêtes ChatGPT par jour": 1.5,
+  "1000 Requêtes ChatGPT par jour": 150,
+  // kWh / pers / an
+  "Logement (an):kwh": 3000, // kWh, par pers par an
+  "Carburant (an):kwh": 5500, // kWh par pers par an, 118 millions de litres de carburant par jour
+  "Centrales (an):kwh": 5400, // kWh, un total de 379,5 TWh » soit ramené par personne, de manière assez intéressante on arrive à **une moyenne de 5400kWh
+  "Ampoule 10W:kwh": 87.6, // kWh par an
+  // kg EqCO2 / kWh
+  // https://www.les-energies-renouvelables.eu/conseils/bilan-carbone/emission-co2-energie/
+  "Nucléaire:co2w": 0.006,
+  "Hydroelectrique:co2w": 0.006,
+  "Éolien:co2w": 0.015,
+  "Photovoltaïque:co2w": 0.03, // dépend de la provenance du panel
+  "Bois:co2w": 0.035,
+  "Gaz:co2w": 0.25,
+  "Charbon:co2w": 1,
+  // AI, TCO2eq
+  "Production (annuelle) Nucléaire France": 2277000, // 379,5 TWh, soit 379500000 * 0.006 kgCO2eq/kWh = 2.277 MtCO2eq
+  "Électricité annuelle 1000 personnes": (2277000/70000).toFixed(1), // 379,5 TWh, soit 379500000 * 0.006 kgCO2eq/kWh = 2.277 MtCO2eq
+  "Objectif 1000 personnes": 2000,
+  "Entraînement GPT-3": 502,
+  "Entraînement GPT-4": 12000, // not sure https://ditchcarbon.com/blog/llm-carbon-emissions
+  "Entraînement Llama3 8B": 390,
+  "Entraînement Llama3 70B": 1900,
+  "Entraînement Llama4": 2000, // all
+  // model sizes
+  "GPT2:param": 1.5,
+  "GPT3:param": 175,
+  "GPT4:param": 1000,
+  "Llama3 8B:param": 8,
+  "Llama3 70B:param": 70,
+  "Llama4:param": 170,
+  // inference costs, Wh
+  "Requête Google Search:wh": .2,
+  "Requête chatGPT (01/2023):wh": 4, // https://empreinte-carbone.org/empreinte-carbone-de-chatgpt-et-des-ia-generatives/
+  "Requête DALL-E:wh": 60,
+  "Bouilloire 3min:wh": 50, // 1000w pendant 3 minutes
+  "Centrales (/j/pers):wh": 610*24, // 379.5 TWh / an / 70 millions de personnes / 8760 h
+  "Centrales (/h/pers):wh": 610, // 379.5 TWh / an / 70 millions de personnes / 8760 h
+  "Centrales (/min/pers):wh": 10, // 379.5 TWh / an / 70 millions de personnes / 8760 h
+}
+```
