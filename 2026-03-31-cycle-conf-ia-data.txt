@@ -6,6 +6,12 @@ Abstract:
 Les algorithmes d'intelligence artificielle (IA) et en particulier d'IA générative (IAg ou GenAI) nécessitent des quantités massives de données, de puissance de calcul et d'énergie pour être entraînés et exécutés. Nous mettrons en perspective les coûts énergétiques liés à l'entraînement des différents modèles existants, qu'il s'agisse de génération de texte, d'images ou de vidéos, ainsi que les coûts de génération. Nous discuterons également des compromis entre la qualité des modèles et leur consommation énergétique, ainsi que des pistes pour réduire cette dernière. Enfin, nous aborderons les enjeux liés à l'utilisation responsable de ces algorithmes et les défis à relever pour minimiser leur impact environnemental.
 
 
+## Quelques liens intéressants
+
+- https://impactco2.fr/outils
+- https://app.electricitymaps.com/
+
+
 ## Quelques resources consolidées (calculs utilisés, etc) (me demander en cas de manque / question / erreur)
 
 - Rapport autorité de la concurrence fin 2025
